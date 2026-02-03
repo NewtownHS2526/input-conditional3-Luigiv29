@@ -23,9 +23,9 @@
 //   3. The status message area (id="status")
 // --------------------------------------------
 
-const textBox = 
-const outputBox = 
-const statusBox = 
+const textBox =  document.querySelector("#user-input")
+const outputBox = document.querySelector("#quiz-outputs")
+const statusBox = document.querySelector("#status")
 
 // This console.log helps us verify our selections worked correctly.
 // Open the browser's Developer Tools (F12) to see the output.
@@ -61,7 +61,8 @@ let pluto = false;
 
 const checkAnswer = () => {
   // Get the current value from the text input
-  
+  const currentAnswer = textBox.value;
+  console.log("Checking", currentAnswer);
 
   // TODO: Create if/else if/else statements to check for each planet.
   // For each correct answer:
@@ -71,27 +72,37 @@ const checkAnswer = () => {
   //   - Display an error message in the statusBox
 
   if (currentAnswer === "Mercury") {
-
+outputBox.innerHTML += `<h3>Mercury</h3><p>Mercury is smaller than one of jupiters moon!</p>`;
+    score += 1;
   } else if (currentAnswer === "Venus") {
-
+outputBox.innerHTML += `<h3>Venus</h3><p>Venus is named after the goddess of beauty!</p>`;
+    score += 1;
   } else if (currentAnswer === "Earth") {
-
+outputBox.innerHTML += `<h3>Earth</h3><p>Earth is the cradle of life!</p>`;
+    score += 1;
   } else if (currentAnswer === "Mars") {
-
+outputBox.innerHTML += `<h3>Mars</h3><p>Mars has a deactivated core!</p>`;
+    score += 1;
   } else if (currentAnswer === "Jupiter") {
-
+outputBox.innerHTML += `<h3>Jupiter</h3><p>Jupiter has the most amount of moons!</p>`;
+    score += 1;
   } else if (currentAnswer === "Saturn") {
-
+outputBox.innerHTML += `<h3>Saturn</h3><p>Saturn has a hexagon storm!</p>`;
+    score += 1;
   } else if (currentAnswer === "Uranus") {
-
+outputBox.innerHTML += `<h3>Uranus</h3><p>Uranus rotates on its side!</p>`;
+    score += 1;
   } else if (currentAnswer === "Neptune") {
-
+outputBox.innerHTML += `<h3>Neptune</h3><p>Neptune is the furthest recognized planet!</p>`;
+    score += 1;
   } else if (currentAnswer === "Pluto") {
+    outputBox.innerHTML += `<h3>Pluto</h3><p>Pluto was reclassified as a dwarf planet in 2006!</p>`;
+    score += 1;
     // Secret bonus answer - Pluto was reclassified as a dwarf planet in 2006
   
   } else {
     // If no conditions match, show an error message
-  
+  statusBox.innerHTML = `Sorry, but ${currentAnswer} is not a planet.`;
   }
 
   // After checking the answer, verify if the game is complete
@@ -114,15 +125,15 @@ const checkAnswer = () => {
 // --------------------------------------------
 
 const checkScore = () => {
-  if (score === 8) {
-   
+  if (score === 8) {statusBox.innerHTML = "Congratulations, you know all your main planets!";}
+  
   }
   if (score === 8 && pluto) {
-    
+    {statusBox.innerHTML = "Congratulations, you know all the planets!";}
     // Disable the text box since the game is complete
     
   }
-};
+;
 
 // --------------------------------------------
 // STEP 5: ADD AN EVENT LISTENER
@@ -142,3 +153,4 @@ const checkScore = () => {
 //   - Calls the checkAnswer function when triggered
 // --------------------------------------------
 
+textBox.addEventListener("change", checkAnswer);
